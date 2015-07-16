@@ -7,6 +7,98 @@
     </database-info>
     <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper"/>
     <schema name="" catalog="propman"/>
+    <table name="account_types" schema="" catalog="propman" type="TABLE">
+      <column name="account_type" sqlType="VARCHAR" precision="32" scale="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="property_limit" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="description" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="account_type"/>
+      <index name="account_type" unique="true" columns="account_type"/>
+    </table>
+    <table name="address" schema="" catalog="propman" type="TABLE">
+      <column name="address_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="house_number" sqlType="VARCHAR" precision="5" scale="0" nullable="false" jdbcType="12"/>
+      <column name="street_name" sqlType="VARCHAR" precision="32" scale="0" nullable="true" jdbcType="12"/>
+      <column name="second_line" sqlType="VARCHAR" precision="32" scale="0" nullable="true" jdbcType="12"/>
+      <column name="city" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="county" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="postcode" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="address_id"/>
+    </table>
+    <table name="deposit" schema="" catalog="propman" type="TABLE">
+      <column name="deposit_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="amount" sqlType="DECIMAL" precision="15" scale="2" nullable="false" jdbcType="3"/>
+      <column name="date_received" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="date_returned" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="protection_scheme" sqlType="VARCHAR" precision="32" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="deposit_id"/>
+      <index name="protection_scheme" unique="false" columns="protection_scheme"/>
+    </table>
+    <table name="deposit_protection_schemes" schema="" catalog="propman" type="TABLE">
+      <column name="deposit_type" sqlType="VARCHAR" precision="32" scale="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="description" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="deposit_type"/>
+      <index name="deposit_type" unique="true" columns="deposit_type"/>
+    </table>
+    <table name="person" schema="" catalog="propman" type="TABLE">
+      <column name="person_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="type" sqlType="ENUM" precision="10" scale="0" nullable="true" jdbcType="1"/>
+      <column name="first_name" sqlType="VARCHAR" precision="32" scale="0" nullable="false" jdbcType="12"/>
+      <column name="second_name" sqlType="VARCHAR" precision="32" scale="0" nullable="true" jdbcType="12"/>
+      <column name="salutation" sqlType="ENUM" precision="4" scale="0" nullable="false" jdbcType="1" def="J01yJw=="/>
+      <column name="company_name" sqlType="VARCHAR" precision="64" scale="0" nullable="true" jdbcType="12"/>
+      <column name="email_address" sqlType="VARCHAR" precision="64" scale="0" nullable="true" jdbcType="12"/>
+      <column name="mobile_number" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="notes" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="person_id"/>
+    </table>
+    <table name="property" schema="" catalog="propman" type="TABLE">
+      <column name="property_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="address_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="landlord_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="key_number" sqlType="VARCHAR" precision="16" scale="0" nullable="true" jdbcType="12"/>
+      <column name="notes" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="property_id"/>
+      <index name="address_id" unique="false" columns="address_id"/>
+      <index name="landlord_id" unique="false" columns="landlord_id"/>
+    </table>
+    <table name="tenancy" schema="" catalog="propman" type="TABLE">
+      <column name="tenancy_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="property_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="start_date" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="expiry_date" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="monthly_rent" sqlType="DECIMAL" precision="15" scale="2" nullable="false" jdbcType="3"/>
+      <column name="tenancy_type" sqlType="VARCHAR" precision="32" scale="0" nullable="false" jdbcType="12"/>
+      <column name="deposit_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="notes" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="tenancy_id"/>
+      <index name="deposit_id" unique="false" columns="deposit_id"/>
+      <index name="property_id" unique="false" columns="property_id"/>
+      <index name="tenancy_type" unique="false" columns="tenancy_type"/>
+    </table>
+    <table name="tenancy_types" schema="" catalog="propman" type="TABLE">
+      <column name="tenancy_type" sqlType="VARCHAR" precision="32" scale="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="description" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="tenancy_type"/>
+      <index name="tenancy_type" unique="true" columns="tenancy_type"/>
+    </table>
+    <table name="tenant_tenancy_mapping" schema="" catalog="propman" type="TABLE">
+      <column name="tenancy_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="person_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <index name="person_id" unique="false" columns="person_id"/>
+      <index name="tenancy_id" unique="false" columns="tenancy_id"/>
+    </table>
+    <table name="user" schema="" catalog="propman" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="username" sqlType="VARCHAR" precision="32" scale="0" nullable="false" jdbcType="12"/>
+      <column name="password" sqlType="VARCHAR" precision="32" scale="0" nullable="false" jdbcType="12"/>
+      <column name="person_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="account_type" sqlType="VARCHAR" precision="32" scale="0" nullable="false" jdbcType="12"/>
+      <column name="bonus_properties" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="username" unique="true" columns="username"/>
+      <index name="account_type" unique="false" columns="account_type"/>
+      <index name="person_id" unique="false" columns="person_id"/>
+    </table>
     <table name="version" schema="" catalog="propman" type="TABLE">
       <column name="version_number" sqlType="VARCHAR" precision="32" scale="0" nullable="false" jdbcType="12"/>
       <column name="description" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
