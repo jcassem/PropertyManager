@@ -16,7 +16,7 @@ CREATE TABLE account_types (
 	ENGINE MyISAM;
 
 CREATE TABLE user (
-	id               INT         NOT NULL AUTO_INCREMENT,
+	user_id               INT         NOT NULL AUTO_INCREMENT,
 	username         VARCHAR(32) NOT NULL UNIQUE,
 	password         VARCHAR(32) NOT NULL,
 	person_id        INT         NOT NULL,
