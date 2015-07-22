@@ -1,6 +1,6 @@
 <?php
 
-require_once "dbAccess/login.php";
+require_once "dbAccess/dbLogin.php";
 require_once "getTableAsString.php";
 
 $conn = new mysqli($hn, $un, $pw, $db);
