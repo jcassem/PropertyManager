@@ -22,7 +22,7 @@ CREATE TABLE person (
 	person_id     INT         NOT NULL AUTO_INCREMENT,
 	type          ENUM('TENANT', 'LANDLORD', 'AGENT', 'CONTRACTOR', 'OTHER'),
 	first_name    VARCHAR(32) NOT NULL,
-	second_name   VARCHAR(32),
+	last_name   VARCHAR(32),
 	salutation ENUM('Mr', 'Mrs', 'Miss', 'Ms', 'Dr', 'Lord') NOT NULL DEFAULT 'Mr',
 	company_name  VARCHAR(64),
 	email_address VARCHAR(64),
