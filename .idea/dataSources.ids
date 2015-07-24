@@ -16,7 +16,7 @@
     </table>
     <table name="address" schema="" catalog="propman" type="TABLE">
       <column name="address_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
-      <column name="house_number" sqlType="VARCHAR" precision="5" scale="0" nullable="false" jdbcType="12"/>
+      <column name="house_number" sqlType="VARCHAR" precision="16" scale="0" nullable="false" jdbcType="12"/>
       <column name="street_name" sqlType="VARCHAR" precision="32" scale="0" nullable="true" jdbcType="12"/>
       <column name="second_line" sqlType="VARCHAR" precision="32" scale="0" nullable="true" jdbcType="12"/>
       <column name="city" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
@@ -43,7 +43,7 @@
       <column name="person_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="type" sqlType="ENUM" precision="10" scale="0" nullable="true" jdbcType="1"/>
       <column name="first_name" sqlType="VARCHAR" precision="32" scale="0" nullable="false" jdbcType="12"/>
-      <column name="second_name" sqlType="VARCHAR" precision="32" scale="0" nullable="true" jdbcType="12"/>
+      <column name="last_name" sqlType="VARCHAR" precision="32" scale="0" nullable="true" jdbcType="12"/>
       <column name="salutation" sqlType="ENUM" precision="4" scale="0" nullable="false" jdbcType="1" def="J01yJw=="/>
       <column name="company_name" sqlType="VARCHAR" precision="64" scale="0" nullable="true" jdbcType="12"/>
       <column name="email_address" sqlType="VARCHAR" precision="64" scale="0" nullable="true" jdbcType="12"/>
@@ -88,13 +88,13 @@
       <index name="tenancy_id" unique="false" columns="tenancy_id"/>
     </table>
     <table name="user" schema="" catalog="propman" type="TABLE">
-      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="username" sqlType="VARCHAR" precision="32" scale="0" nullable="false" jdbcType="12"/>
       <column name="password" sqlType="VARCHAR" precision="32" scale="0" nullable="false" jdbcType="12"/>
       <column name="person_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="account_type" sqlType="VARCHAR" precision="32" scale="0" nullable="false" jdbcType="12"/>
       <column name="bonus_properties" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
-      <primary-key name="PRIMARY" columns="id"/>
+      <primary-key name="PRIMARY" columns="user_id"/>
       <index name="username" unique="true" columns="username"/>
       <index name="account_type" unique="false" columns="account_type"/>
       <index name="person_id" unique="false" columns="person_id"/>

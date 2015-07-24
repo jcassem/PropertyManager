@@ -7,14 +7,14 @@
 NB Made for update_4
 */
 
-# Create test uesr / landlord (password = 'password')
+# Create test uesr / landlord
 INSERT INTO person (type, first_name, second_name, company_name, email_address, mobile_number, notes)
 VALUES ('LANDLORD', 'Joe', 'Lordland', 'Prop Co.', 'joe@prop.co', '07778889990', 'Test user & landlord');
 
 INSERT INTO user (username, password, person_id, account_type)
 	SELECT
 		'propco',
-		'b6b2bcff665cafc6017878e72df19d45',
+		'920688bd88d6a1ba0e177f17bdf6dddd',
 		person_id,
 		'FREE'
 	FROM person

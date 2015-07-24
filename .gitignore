@@ -1,1 +1,3 @@
 webapp/dbAccess/dbLogin.php
+webapp/session/sessionUtils.php
+webapp/session/_generateToken.php
