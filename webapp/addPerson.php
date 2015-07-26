@@ -2,9 +2,11 @@
 
 $person_types = array('TENANT', 'LANDLORD', 'AGENT', 'CONTRACTOR', 'OTHER');
 
-echo 'Type*				<select name="type">';
+echo '<form action="addPerson.php" method="post"><pre>';
+
+echo 'Type*			<select name="type">';
 foreach ($person_types as $type)
-	echo '<option value="' . $type . '">' . ucfirst($type) . '</option>';
+	echo '<option value="' . $type . '">' . ucfirst(strtolower($type)) . '</option>';
 echo "</select><br>";
 
 require_once "addPersonTemplate.php";
@@ -15,10 +17,15 @@ echo <<<_END
 </form>
 _END;
 
-// Give result if submit button has been clicked
 if (isset($_POST['submitButton'])) {
-	if ($error != "")
-		echo "Error:<br>" . $error;
-	else
-		echo "Success";
+	$person = getPerson();
+	if ($person['error'] != "")
+		echo "Error:<br>" . $person['error'];
+	else {
+		$personId = addPerson($person);
+		if ($personId)
+			echo "Person Id: " . $personId;
+		else
+			echo "Error: Person not added";
+	}
 }

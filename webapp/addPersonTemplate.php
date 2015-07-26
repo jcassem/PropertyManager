@@ -1,6 +1,7 @@
 <?php
 
 require_once "addDbData.php";
+require_once "dbAccess/dbLogin.php";
 
 // Person table enums
 $salutations = array('Mr', 'Mrs', 'Miss', 'Ms', 'Dr', 'Lord');
@@ -13,12 +14,12 @@ foreach ($salutations as $sal)
 echo "</select><br>";
 
 echo <<<_END
-First name* 		<input type="text" name="first_name">
-Second name* 		<input type="text" name="second_name">
-Email address* 		<input type="email" name="email">
-Phone number* 		<input type="tel" name="mobile_number">
-Company name 		<input type="text" name="company">
-Notes			<input type="text" name="notes">
+First name* 		<input type="text" name="first_name"><br>
+Second name* 		<input type="text" name="second_name"><br>
+Email address* 		<input type="email" name="email"><br>
+Phone number* 		<input type="tel" name="mobile_number"><br>
+Company name 		<input type="text" name="company"><br>
+Notes			<input type="text" name="notes"><br>
 _END;
 
 // <input name="submitButton" type="submit" value="Create"></pre></form>
@@ -100,4 +101,11 @@ function validate_mobile ($mobile)
 		return "Phone number must only contain numbers<br>";
 
 	return "";
+}
+
+function addPerson ($person)
+{
+	$query = "INSERT INTO person " . "(type, first_name, last_name, salutation, company_name, email_address, mobile_number, notes) VALUES (" . "'" . $person['type'] . "'," . "'" . $person['first_name'] . "'," . "'" . $person['second_name'] . "'," . "'" . $person['salutation'] . "'," . "'" . $person['company'] . "'," . "'" . $person['email'] . "'," . "'" . $person['mobile'] . "'," . "'" . $person['notes'] . "')";
+
+	return getInsertQueryResultId($query);
 }
