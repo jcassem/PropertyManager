@@ -1,6 +1,5 @@
 <?php
-// TODO select from existing addresses with landlord id or add new one to reveal form below
-// TODO search property from postcode (& maybe house number)
+
 require_once "addDbData.php";
 
 // <form action="addAddressTemplate.php" method="post"><pre>
@@ -49,8 +48,15 @@ function validate_postcode ($postcode)
 
 	if ($postcode == "")
 		return "No postcode was entered<br>";
-	else if (!preg_match("/(GIR 0AA)|((([A-Z-[QVX]][0-9][0-9]?)|(([A-Z-[QVX]][A-Z-[IJZ]][0-9][0-9]?)|(([A-Z-[QVX]][0-9][A-HJKPSTUW])|([A-Z-[QVX]][A-Z-[IJZ]][0-9][ABEHMNPRVWXY])))) [0-9][A-Z-[CIKMOV]]{2})/", $postcode))
-		return "Phone number must only contain numbers<br>";
+	else if (!preg_match("/^([a-zA-Z]{1,2}\d{1,2})\s*?(\d[a-zA-Z]{2})$/", $postcode))
+		return "Postcode not of correct format<br>";
 
 	return "";
+}
+
+function addAddress ($address)
+{
+	$query = "INSERT INTO address (house_number, street_name, second_line, city, county, postcode) VALUES (" . "'" . $address['house_number'] . "'," . "'" . $address['street_name'] . "'," . "'" . $address['second_line'] . "'," . "'" . $address['city'] . "'," . "'" . $address['county'] . "'," . "'" . $address['postcode'] . "')";
+
+	return getInsertQueryResultId($query);
 }
