@@ -1,6 +1,7 @@
 <?php
 
 require_once "addDbData.php";
+require_once "dbAccess/dbLogin.php";
 
 // <form action="addAddressTemplate.php" method="post"><pre>
 
