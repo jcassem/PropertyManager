@@ -1,19 +1,17 @@
 <?php
 
 require_once 'validateUser.php';
+require_once "dbAccess/dbLogin.php";
+require_once "session/sessionUtils.php";
 
 $_POST['type'] = 'LANDLORD';
 
 echo '<form action="addUser.php" method="post"><pre>';
 
-echo "<h3>Person:</h3>";
 require_once "addPersonTemplate.php";
 
-echo "<br><h3>Address:</h3>";
-require_once "addAddressTemplate.php";
-
 echo <<<_END
-<br><h3>Login:</h3>
+<br>
 Username* 		<input type="text" name="un">
 Password*		<input type="password" name="pw">
 <br><input name="submitButton" type="submit" value="Create">
@@ -33,11 +31,26 @@ $error .= $address["error"];
 $error .= validate_username($username);
 $error .= validate_password($password);
 
-// Give result if submit button has been clicked
 if (isset($_POST['submitButton'])) {
 	if ($error != "")
 		echo "Error:<br>" . $error;
 	else
-		echo "Success";
+		echo addUser($person, $username, $password);
 }
 
+function addUser ($person, $username, $password)
+{
+	$personResult = addPerson($person);
+
+	if ($personResult) {
+		$query = "INSERT INTO user (username, password, person_id, account_type) VALUES (";
+		$query .= "'" . $username . "'," . "'" . getToken($password) . "',";
+		$query .= "'" . $personResult . "'," . "'FREE')";
+
+		$userId = getInsertQueryResultId($query);
+
+		return $userId ? "User Id: " . $userId : "Person added, user not added";
+	}
+	else
+		return "Person and user not added";
+}

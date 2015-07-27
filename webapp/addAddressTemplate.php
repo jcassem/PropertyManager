@@ -18,7 +18,12 @@ _END;
 
 function getAddress ()
 {
-	$address = array("house_number" => getPostField('house_number'), "street_name" => getPostField('street_name'), "second_line" => getPostField('second_line'), "city" => getPostField('city'), "county" => getPostField('county'), "postcode" => getPostField('postcode'));
+	$address = array("house_number" => getPostField('house_number'),
+		"street_name" => getPostField('street_name'),
+		"second_line" => getPostField('second_line'),
+		"city" => getPostField('city'),
+		"county" => getPostField('county'),
+		"postcode" => getPostField('postcode'));
 
 	$address["error"] = validateAddress($address);
 
@@ -57,7 +62,10 @@ function validate_postcode ($postcode)
 
 function addAddress ($address)
 {
-	$query = "INSERT INTO address (house_number, street_name, second_line, city, county, postcode) VALUES (" . "'" . $address['house_number'] . "'," . "'" . $address['street_name'] . "'," . "'" . $address['second_line'] . "'," . "'" . $address['city'] . "'," . "'" . $address['county'] . "'," . "'" . $address['postcode'] . "')";
+	$query = "INSERT INTO address (house_number, street_name, second_line, city, county, postcode) VALUES (";
+	$query .= "'" . $address['house_number'] . "'," . "'" . $address['street_name'] . "'," . "'";
+	$query .= $address['second_line'] . "'," . "'" . $address['city'] . "'," . "'" . $address['county'] . "',";
+	$query .= "'" . $address['postcode'] . "')";
 
 	return getInsertQueryResultId($query);
 }
