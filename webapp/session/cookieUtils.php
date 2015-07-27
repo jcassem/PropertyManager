@@ -2,7 +2,8 @@
 
 function getCookieName ()
 {
-	return session_name();
+	return "testCookie";
+	//	return session_name();
 }
 
 function getCookieValue ($user)

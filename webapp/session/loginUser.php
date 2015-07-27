@@ -15,7 +15,7 @@ function loginUserWith ($username, $password)
 {
 	$user = getUser($username, $password);
 
-	if (isset($user))
+	if (userIsValid($user))
 		startSession($user);
 	else
 		echo "USER DOES NOT EXIST";
@@ -25,7 +25,12 @@ function getUser ($username, $password)
 {
 	$token = getToken($password);
 
-	return getQueryResultAsAssocArray("SELECT * FROM USER WHERE USERNAME='$username' AND PASSWORD='$token'");
+	return getSelectQueryResultAsAssocArray("SELECT * FROM USER WHERE USERNAME='$username' AND PASSWORD='$token'");
+}
+
+function userIsValid ($user)
+{
+	return isset($user) && is_array($user) && isset($user['person_id']);
 }
 
 function startSession ($user)
@@ -51,13 +56,13 @@ function startSession ($user)
 	issueCookie($user);
 }
 
-function getPerson ($person_id)
+function getPersonFromDb ($person_id)
 {
-	return getQueryResultAsAssocArray("SELECT * FROM person WHERE person_id=$person_id");
+	return getSelectQueryResultAsAssocArray("SELECT * FROM person WHERE person_id=$person_id");
 }
 
 function issueCookie ($user)
 {
-	if (!isset($_COOKIE[session_name()]))
-		setcookie(session_name(), getCookieValue($user), getCookieExpiryTime(), getCookieServerPath());
+	if (!isset($_COOKIE[getCookieName()]))
+		setcookie(getCookieName(), getCookieValue($user), getCookieExpiryTime(), getCookieServerPath());
 }

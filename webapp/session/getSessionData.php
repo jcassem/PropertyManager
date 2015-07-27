@@ -123,5 +123,5 @@ function getUsersEmailFromSession ()
 
 function loginRequiredAlert ()
 {
-	echo "LOGIN REQUIRED";
+	echo "<br>LOGIN REQUIRED<br>";
 }
