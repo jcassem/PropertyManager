@@ -4,11 +4,11 @@
 - Create property (& address)
 - Create tenancy (& deposit)
 
-NB Made for update_4
+NB Made for update_5
 */
 
 # Create test uesr / landlord
-INSERT INTO person (type, first_name, second_name, company_name, email_address, mobile_number, notes)
+INSERT INTO person (type, first_name, last_name, company_name, email_address, mobile_number, notes)
 VALUES ('LANDLORD', 'Joe', 'Lordland', 'Prop Co.', 'joe@prop.co', '07778889990', 'Test user & landlord');
 
 INSERT INTO user (username, password, person_id, account_type)
@@ -18,10 +18,10 @@ INSERT INTO user (username, password, person_id, account_type)
 		person_id,
 		'FREE'
 	FROM person
-	WHERE first_name = 'Joe' AND second_name = 'Lordland';
+	WHERE first_name = 'Joe' AND last_name = 'Lordland';
 
 # CREATE TEST TENANT
-INSERT INTO person (salutation, type, first_name, second_name, email_address, mobile_number, notes)
+INSERT INTO person (salutation, type, first_name, last_name, email_address, mobile_number, notes)
 VALUES ('Ms', 'TENANT', 'Jane', 'Tenot', 'jane.tenot@email.com', '07123456789', 'Test tenant');
 
 # CREATE TEST PROPERTY
@@ -35,7 +35,7 @@ INSERT INTO property (address_id, landlord_id, notes)
 		'Test property'
 	FROM address ad, person per
 	WHERE ad.house_number = '123' AND ad.postcode = 'postcode'
-				AND per.first_name = 'Joe' AND per.second_name = 'Lordland';
+				AND per.first_name = 'Joe' AND per.last_name = 'Lordland';
 
 # CREATE TEST TENANCY
 INSERT INTO deposit (amount, date_received, protection_scheme)
@@ -60,6 +60,6 @@ INSERT INTO tenant_tenancy_mapping (tenancy_id, person_id)
 		per.person_id
 	FROM tenancy ten, person per
 	WHERE ten.notes = 'Test tenancy'
-				AND per.first_name = 'Jane' AND per.second_name = 'Tenot';
+				AND per.first_name = 'Jane' AND per.last_name = 'Tenot';
 
 COMMIT;

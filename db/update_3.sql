@@ -22,7 +22,7 @@ CREATE TABLE user (
 	person_id        INT         NOT NULL,
 	account_type     VARCHAR(32) NOT NULL,
 	bonus_properties  int NOT NULL DEFAULT 0,
-	PRIMARY KEY (id),
+	PRIMARY KEY (user_id),
 	FOREIGN KEY (person_id) REFERENCES person (person_id),
 	FOREIGN KEY (account_type) REFERENCES account_types (account_type)
 )
