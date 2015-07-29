@@ -2,9 +2,9 @@
 
 session_start();
 
-require_once "dbAccess/dbLogin.php";
-require_once "session/sessionUtils.php";
-require_once "session/getSessionData.php";
+require_once "../dbAccess/dbLogin.php";
+require_once "../session/sessionUtils.php";
+require_once "../session/getSessionData.php";
 require_once "addDbData.php";
 
 echo '<form action="addProperty.php" method="post"><pre>';
