@@ -2,7 +2,7 @@
 
 require_once "loginUser.php";
 require_once "../validateUser.php";
-require_once "../addDbData.php";
+require_once "../forms/addDbData.php";
 
 echo <<<_END
 <html>

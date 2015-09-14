@@ -1,7 +1,7 @@
 <?php
 
 require_once '../validateUser.php';
-require_once "../dbAccess/dbLogin.php";
+require_once "../dbAccess/dbAccessFactory.php";
 require_once "../session/sessionUtils.php";
 
 $_POST['type'] = 'LANDLORD';

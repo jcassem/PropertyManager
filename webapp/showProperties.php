@@ -1,6 +1,6 @@
 <?php
 
-require_once "dbAccess/dbLogin.php";
+require_once "dbAccess/dbAccessFactory.php";
 
 $conn = new mysqli($hn, $un, $pw, $db);
 if ($conn->connect_error) {

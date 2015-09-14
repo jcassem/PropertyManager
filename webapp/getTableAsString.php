@@ -1,6 +1,6 @@
 <?php
 
-require_once "dbAccess/dbLogin.php";
+require_once "dbAccess/dbAccessFactory.php";
 
 function getPropertyAsString ($id)
 {
