@@ -115,8 +115,8 @@ function getPersonAsString ($id)
 	if (isset($landlordResult['first_name']))
 		$personString .= $landlordResult['first_name'] . " ";
 
-	if (isset($landlordResult['second_name']))
-		$personString .= $landlordResult['second_name'] . ",<br>";
+	if (isset($landlordResult['last_name']))
+		$personString .= $landlordResult['last_name'] . ",<br>";
 
 	if (isset($landlordResult['company_name']))
 		$personString .= $landlordResult['company_name'] . ",<br>";

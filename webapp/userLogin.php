@@ -15,7 +15,7 @@ $username = getPostField('un');
 $password = getPostField('pw');
 
 $error = validate_username($username);
-//$error .= validate_password($password);
+//$error .= validate_password($password); TODO remove comment
 
 if (isset($_POST['loginButton'])) {
 	if ($error != "")

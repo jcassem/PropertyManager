@@ -109,8 +109,8 @@ function printLandlord ($id)
 		echo $landlordResult['salutation'] . " ";
 	if (isset($landlordResult['first_name']))
 		echo $landlordResult['first_name'] . " ";
-	if (isset($landlordResult['second_name']))
-		echo $landlordResult['second_name'] . ",<br>";
+	if (isset($landlordResult['last_name']))
+		echo $landlordResult['last_name'] . ",<br>";
 	if (isset($landlordResult['company_name']))
 		echo $landlordResult['company_name'] . ",<br>";
 	if (isset($landlordResult['email_address']))

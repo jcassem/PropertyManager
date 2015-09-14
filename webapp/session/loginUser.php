@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . "/webapp/dbAccess/dbLogin.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/webapp/dbAccess/dbAccessFactory.php";
 require_once "sessionUtils.php";
 require_once "cookieUtils.php";
 require_once "setSessionData.php";
@@ -48,7 +48,7 @@ function startSession ($user)
 	setSessionUsername($user['username']);
 	setSessionPasswordHash($user['password']);
 
-	$person = getPerson($user['person_id']);
+	$person = getPersonFromDb($user['person_id']);
 	setSessionFirstName($person['first_name']);
 	setSessionLastName($person['last_name']);
 	setSessionEmail($person['email_address']);

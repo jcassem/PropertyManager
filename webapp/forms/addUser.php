@@ -21,7 +21,7 @@ _END;
 
 // Initialise
 $person = getPerson();
-$address = getAddress();
+$address = $person['address'];
 $username = getPostField('un');
 $password = getPostField('pw');
 
