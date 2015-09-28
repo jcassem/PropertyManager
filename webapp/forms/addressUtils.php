@@ -1,6 +1,8 @@
 <?php
 
-function getAddress ()
+require_once $_SERVER['DOCUMENT_ROOT'] . "/webapp/dbAccess/dbAccessFactory.php";
+
+function getAddressFromForm()
 {
     $address = array("house_number" => getPostField('house_number'),
         "street_name" => getPostField('street_name'),
@@ -12,6 +14,39 @@ function getAddress ()
     $address["error"] = validateAddress($address);
 
     return $address;
+}
+
+function getAddressFromId($id)
+{
+    return getSelectQueryResultAsAssocArray("SELECT * FROM address WHERE address_id=" . $id);
+}
+
+function addressToSting($address)
+{
+    $addressString = "";
+
+    if (isset($address['address_id']))
+        $addressString .= "id " . $address['address_id'] . ":<br>";
+
+    if (isset($address['house_number']))
+        $addressString .= $address['house_number'] . " ";
+
+    if (isset($address['street_name']))
+        $addressString .= $address['street_name'] . ",<br>";
+
+    if (isset($address['second_line']))
+        $addressString .= $address['second_line'] . ",<br>";
+
+    if (isset($address['city']))
+        $addressString .= $address['city'] . ",<br>";
+
+    if (isset($address['county']))
+        $addressString .= $address['county'] . ",<br>";
+
+    if (isset($address['postcode']))
+        $addressString .= $address['postcode'];
+
+    return $addressString;
 }
 
 function validateAddress ($address)

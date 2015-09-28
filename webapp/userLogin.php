@@ -2,7 +2,7 @@
 
 require_once "session/loginUser.php";
 require_once "validateUser.php";
-require_once "forms/addDbData.php";
+require_once "forms/sanitiseFormData.php";
 
 echo <<<_END
 <form action="userLogin.php" method="post"><pre>

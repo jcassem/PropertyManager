@@ -8,8 +8,25 @@ function getSelectQueryResultAsAssocArray ($query)
 
     $result = mysqli_query(mysqli_connect($hn, $un, $pw, $db), $query);
 
-    if(mysqli_num_rows($result) > 0)
+    if ($result)
         return mysqli_fetch_assoc($result);
+    else
+        return returnFailedQuery();
+}
+
+function getSelectQueryResultAsAssocArray2($query)
+{
+    global $hn, $db, $un, $pw;
+
+    $result = mysqli_query(mysqli_connect($hn, $un, $pw, $db), $query);
+
+    if ($result) {
+        $assocResult = array();
+        while ($row = $result->fetch_assoc()) {
+            array_push($assocResult, $row);
+        }
+        return $assocResult;
+    }
     else
         return returnFailedQuery();
 }

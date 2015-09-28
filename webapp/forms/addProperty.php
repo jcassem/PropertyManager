@@ -5,7 +5,7 @@ session_start();
 require_once "../dbAccess/dbAccessFactory.php";
 require_once "../session/sessionUtils.php";
 require_once "../session/getSessionData.php";
-require_once "addDbData.php";
+require_once "sanitiseFormData.php";
 
 echo '<form action="addProperty.php" method="post"><pre>';
 
@@ -20,7 +20,7 @@ Notes			<input type="text" name="notes">
 _END;
 
 // Initialise
-$address = getAddress();
+$address = getAddressFromForm();
 $key = getPostField('key');
 $notes = getPostField('notes');
 
@@ -48,4 +48,6 @@ function addProperty($address, $key, $notes)
 
         return $propId ? "Property Id: " . $propId : "ERROR: Property not added";
     }
+
+    return "";
 }

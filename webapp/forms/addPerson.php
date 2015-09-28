@@ -18,7 +18,7 @@ echo <<<_END
 _END;
 
 if (isset($_POST['submitButton'])) {
-	$person = getPerson();
+	$person = getPersonFromForm();
 	if ($person['error'] != "")
 		echo "Error:<br>" . $person['error'];
 	else {

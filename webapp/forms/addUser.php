@@ -20,7 +20,7 @@ Password*		<input type="password" name="pw">
 _END;
 
 // Initialise
-$person = getPerson();
+$person = getPersonFromForm();
 $address = $person['address'];
 $username = getPostField('un');
 $password = getPostField('pw');

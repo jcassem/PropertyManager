@@ -1,7 +1,9 @@
 <?php
 
 require_once "dbAccess/dbAccessFactory.php";
-require_once "getTableAsString.php";
+require_once "forms/tenancyUtils.php";
+require_once "forms/propertyUtils.php";
+require_once "forms/personUtils.php";
 
 $conn = new mysqli($hn, $un, $pw, $db);
 if ($conn->connect_error) {
@@ -18,7 +20,7 @@ function printTenancyTable ()
 	echo <<< _END
 <table border = "1" cellpadding="2" cellspacing="5" style="width:100%">
 <tr>
-<th>Id</th>
+<th>Tenancy Id</th>
 <th>Property</th>
 <th>Start Date</th>
 <th>Expiry Date</th>
@@ -54,7 +56,7 @@ function printTenancies ()
 
 		echo "<td>" . $tenancyResult['tenancy_id'] . "</td>";
 
-		echo "<td>" . getPropertyAsString($tenancyResult['property_id']) . "</td>";
+		echo "<td>" . propertyToString(getPropertyFromId($tenancyResult['property_id'])) . "</td>";
 
 		echo "<td>" . $tenancyResult['start_date'] . "</td>";
 
@@ -64,9 +66,9 @@ function printTenancies ()
 
 		echo "<td>" . $tenancyResult['tenancy_type'] . "</td>";
 
-		echo "<td>" . getDepositAsString($tenancyResult['deposit_id']) . "</td>";
+		echo "<td>" . depositToString(getDepositFromId($tenancyResult['deposit_id'])) . "</td>";
 
-		echo "<td>" . getTenantsInTenancyAsString($tenancyResult['tenancy_id']) . "</td>";
+		echo "<td>" . tenancyTenantsToString(getTenantsFromTenancyId($tenancyResult['tenancy_id'])) . "</td>";
 
 		echo "<td>" . $tenancyResult['notes'] . "</td>";
 

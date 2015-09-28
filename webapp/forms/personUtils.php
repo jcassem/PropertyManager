@@ -1,8 +1,9 @@
 <?php
 
+require_once $_SERVER['DOCUMENT_ROOT'] . "/webapp/dbAccess/dbAccessFactory.php";
 require_once "addressUtils.php";
 
-function getPerson ()
+function getPersonFromForm()
 {
     $type = "";
     if (isset($_POST['type']))
@@ -16,11 +17,52 @@ function getPerson ()
         "mobile_number" => getPostField('mobile_number'),
         "company" => getPostField('company'),
         "notes" => getPostField('notes'),
-        "address" => getAddress());
+        "address" => getAddressFromForm());
 
     $person["error"] = validatePerson($person);
 
     return $person;
+}
+
+function getPersonFromId($id)
+{
+    return getSelectQueryResultAsAssocArray("SELECT * FROM person WHERE person_id = " . $id);
+}
+
+function personToSting($person)
+{
+    $personString = "";
+
+    if (isset($person['person_id']))
+        $personString .= "id:" . $person['person_id'];
+
+    if (isset($person['type']))
+        $personString .= " (" . $person['type'] . ")";
+
+    $personString .= "<br>";
+
+    if (isset($person['salutation']))
+        $personString .= $person['salutation'] . " ";
+
+    if (isset($person['first_name']))
+        $personString .= $person['first_name'] . " ";
+
+    if (isset($person['last_name']))
+        $personString .= $person['last_name'] . ",<br>";
+
+    if (isset($person['company_name']))
+        $personString .= $person['company_name'] . ",<br>";
+
+    if (isset($person['email_address']))
+        $personString .= $person['email_address'] . ",<br>";
+
+    if (isset($person['mobile_number']))
+        $personString .= $person['mobile_number'] . ",<br>";
+
+    if (isset($person['notes']))
+        $personString .= $person['notes'];
+
+    return $personString;
 }
 
 
