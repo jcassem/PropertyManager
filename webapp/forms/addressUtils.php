@@ -26,7 +26,7 @@ function addressToSting($address)
     $addressString = "";
 
     if (isset($address['address_id']))
-        $addressString .= "id " . $address['address_id'] . ":<br>";
+        $addressString .= "id: " . $address['address_id'] . "<br>";
 
     if (isset($address['house_number']))
         $addressString .= $address['house_number'] . " ";
@@ -47,6 +47,11 @@ function addressToSting($address)
         $addressString .= $address['postcode'];
 
     return $addressString;
+}
+
+function getFirstLineOf($address)
+{
+    return $address['house_number'] . " " . $address['street_name'];
 }
 
 function validateAddress ($address)
