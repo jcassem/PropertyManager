@@ -1,6 +1,7 @@
 <?php
 
 require_once "propertyCard.php";
+require_once "tenancyCard.php";
 
 echo <<<END
 <!DOCTYPE html>
@@ -17,7 +18,7 @@ echo <<<END
 END;
 
 
-getPropertyCard(1);
 getPropertyCard(2);
+getTenancyCard(1);
 
 echo "</body></html>";

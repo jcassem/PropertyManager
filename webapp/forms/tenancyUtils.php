@@ -16,7 +16,7 @@ function tenancyToString($tenancy)
     $tenancyString = "";
 
     if (isset($tenancy['tenancy_id']))
-        $tenancyString .= "id " . $tenancy['tenancy_id'] . ":<br>";
+        $tenancyString .= "id: " . $tenancy['tenancy_id'] . "<br>";
 
     if (isset($tenancy['property_id']))
         $tenancyString .= "<br>" . propertyToString(getPropertyFromId($tenancy['property_id'])) . "<br>";
@@ -46,21 +46,56 @@ function tenancyToString($tenancy)
     return $tenancyString;
 }
 
+function getStatusOTenancy($tenancy)
+{
+    $status = "VACANT";
+    if (isset($tenancy['start_date'])) {
+        if (isset($tenancy['expiry_date'])) {
+            $startDate = strtotime($tenancy['start_date']);
+            $endDate = strtotime($tenancy['expiry_date']);
+            if (time() - $endDate < 0 && time() - $startDate > 0) {
+                $status = "RENTED";
+            }
+        } else
+            $status = "RENTED";
+    }
+    return $status;
+}
+
 // ----------------
 // TENANT UTILS
 // ----------------
 
-function getTenantsFromTenancyId($tenancy_id)
+function getTenantTenancyMappingsFromTenancyId($tenancy_id)
 {
     return getSelectQueryResultAsAssocArray2("SELECT * FROM tenant_tenancy_mapping WHERE tenancy_id=" . $tenancy_id);
+}
+
+function getTenantsFromTenancyId($tenancyId)
+{
+    $tenantTenancyMaps = getTenantTenancyMappingsFromTenancyId($tenancyId);
+    $tenants = array();
+    if (is_array($tenantTenancyMaps[0])) {
+        foreach ($tenantTenancyMaps as $tenantTenancyMap) {
+            $tenantID = $tenantTenancyMap['person_id'];
+            $tenant = getPersonFromId($tenantID);
+            array_push($tenants, $tenant);
+        }
+    } else {
+        $tenantID = $tenantTenancyMaps['person_id'];
+        $tenant = getPersonFromId($tenantID);
+        array_push($tenants, $tenant);
+    }
+
+    return $tenants;
 }
 
 function tenancyTenantsToString($tenancy)
 {
     if (is_array($tenancy[0]))
-        $tenants = getTenantsFromTenancyId($tenancy[0]['tenancy_id']);
+        $tenants = getTenantTenancyMappingsFromTenancyId($tenancy[0]['tenancy_id']);
     else
-        $tenants = getTenantsFromTenancyId($tenancy['tenancy_id']);
+        $tenants = getTenantTenancyMappingsFromTenancyId($tenancy['tenancy_id']);
 
     $tenantString = "";
     if (isset($tenants['person_id']))
@@ -107,4 +142,19 @@ function depositToString($deposit)
         $depositString .= $deposit['protection_scheme'];
 
     return $depositString;
+}
+
+function getStatusOfDeposit($deposit)
+{
+    $status = "UNPROTECTED";
+    if (isset($deposit['date_received'])) {
+        if (isset($deposit['date_returned'])) {
+            $startDate = strtotime($deposit['date_received']);
+            $endDate = strtotime($deposit['date_returned']);
+            if (time() - $endDate < 0 && time() - $startDate > 0)
+                $status = "PROTECTED";
+        } else
+            $status = "PROTECTED";
+    }
+    return $status;
 }

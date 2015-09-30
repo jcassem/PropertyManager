@@ -4,9 +4,11 @@ function displayCard($title, $details, $extraInfo1, $extraInfo2, $extraInfo3)
 {
     echo <<<END
 <div class="card">
-  <img class="card-img-top" data-src="holder.js/100%x180/?text=Image cap" alt="Card image cap" src="property.jpg">
   <div class="card-block">
     <h4 class="card-title">$title</h4>
+  </div>
+  <img class="card-img-top" data-src="holder.js/100%x180/?text=Image cap" alt="Card image cap" src="property.jpg">
+  <div class="card-block">
     <p class="card-text">$details</p>
   </div>
 END;

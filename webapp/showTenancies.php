@@ -68,7 +68,7 @@ function printTenancies ()
 
 		echo "<td>" . depositToString(getDepositFromId($tenancyResult['deposit_id'])) . "</td>";
 
-		echo "<td>" . tenancyTenantsToString(getTenantsFromTenancyId($tenancyResult['tenancy_id'])) . "</td>";
+		echo "<td>" . tenancyTenantsToString(getTenantTenancyMappingsFromTenancyId($tenancyResult['tenancy_id'])) . "</td>";
 
 		echo "<td>" . $tenancyResult['notes'] . "</td>";
 
