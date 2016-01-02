@@ -17,10 +17,7 @@ require_once "header.php";
 <?php getHeader(); ?>
 
 <div class="container-fluid main">
-    <?php // demo cards
-    for ($i = 0; $i < 16; $i++)
-        getPropertyCard(1);
-    ?>
+
 </div>
 
 <!-- Bootstrap core JavaScript
