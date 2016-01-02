@@ -1,0 +1,53 @@
+/* --------------
+ * Navbar
+ * -------------- */
+
+.navbar {
+    position: relative;
+}
+
+.navbar-brand {
+    position: absolute;
+    left: 50%;
+    display: block;
+}
+
+.navbar-icon {
+    color: white;
+    background-color: #555a5d;
+    border: none;
+}
+
+.search-bar {
+    background-color: #555a5d;
+    border: none;
+}
+
+@media (max-width: 750px) {
+    .navbar-brand {
+        left: 16px;
+    }
+    .navbar {
+        height: 20%;
+    }
+    .search-bar {
+        display: none;
+    }
+    .search-icon {
+        display:inline-block;
+    }
+}
+
+@media (min-width: 751px) {
+    .search-icon {
+        display:none;
+    }
+}
+
+/* --------------
+ * Main content
+ * -------------- */
+
+.main {
+    margin: 20px;
+}
