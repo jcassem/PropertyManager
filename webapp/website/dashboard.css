@@ -9,6 +9,7 @@
 .navbar-brand {
     position: absolute;
     left: 50%;
+    margin-left: -51px;
     display: block;
 }
 
@@ -20,12 +21,14 @@
 
 .search-bar {
     background-color: #555a5d;
+    color: white;
     border: none;
 }
 
 @media (max-width: 750px) {
     .navbar-brand {
         left: 16px;
+        margin-left: 0;
     }
     .navbar {
         height: 20%;
@@ -50,4 +53,19 @@
 
 .main {
     margin: 20px;
+}
+
+
+/* --------------
+ * Cards
+ * -------------- */
+
+.card {
+    margin: 5px;
+}
+
+.card-img-top {
+    max-width: 100%;
+    margin: 0 auto;
+    display: block;
 }

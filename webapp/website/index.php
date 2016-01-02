@@ -30,6 +30,11 @@ require_once "tenancyCard.php";
 
 <div class="container-fluid main">
      <h1>Dashboard cards</h1>
+
+    <?php // demo cards
+    for($i=0; $i<16; $i++)
+        getPropertyCard(1);
+    ?>
  </div>
 
  <!-- Bootstrap core JavaScript
