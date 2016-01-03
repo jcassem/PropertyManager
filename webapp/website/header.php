@@ -5,6 +5,7 @@
 function getHeader()
 {
     get_plus_modal();
+    get_login_modal();
     echo <<<_END
     <nav class="navbar navbar-dark navbar-fixed-top bg-inverse">
     <a class="navbar-brand" href="' . get_url_home() . '">
@@ -20,7 +21,7 @@ function getHeader()
         <button type="button" class="btn btn-default navbar-icon" data-toggle="modal" data-target="#plusModal">
             <i class="fa fa-plus"></i>
         </button>
-        <button type="button" class="btn btn-default navbar-icon">
+        <button type="button" class="btn btn-default navbar-icon" data-toggle="modal" data-target="#loginModal">
             <i class="fa fa-user"></i>
         </button>
         <button type="button" class="btn btn-default navbar-icon">
@@ -89,6 +90,43 @@ _END;
           <button type="submit" class="btn btn-danger btn-default pull-right" data-dismiss="modal"><i class="fa fa-remove"></i> Cancel</button>
         </div> <!-- footer -->
 
+      </div> <!-- content -->
+    </div> <!-- dialog -->
+  </div> <!-- modal -->
+_END;
+}
+
+function get_login_modal()
+{
+    echo <<<_END
+<div class="modal fade" id="loginModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" style="padding:35px 50px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
+        </div>
+        <div class="modal-body" style="padding:40px 50px;">
+          <form role="form">
+            <div class="form-group">
+              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
+              <input type="text" class="form-control" id="usrname" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+              <input type="text" class="form-control" id="psw" placeholder="Enter password">
+            </div>
+            <div class="checkbox">
+              <label><input type="checkbox" value="" checked> Remember me</label>
+            </div>
+              <button type="submit" class="btn btn-success btn-block"><i class="fa fa-sign-in"></i> Login</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <!--button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><i class="fa fa-remove"></i> Cancel</button-->
+          <p>Not a member? <a href="#">Sign Up</a></p>
+          <p><a href="#">Forgot Password?</a></p>
+        </div> <!-- footer -->
       </div> <!-- content -->
     </div> <!-- dialog -->
   </div> <!-- modal -->
