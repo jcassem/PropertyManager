@@ -6,6 +6,7 @@ function getHeader()
 {
     get_plus_modal();
     get_login_modal();
+    get_notification_panel();
     echo <<<_END
     <nav class="navbar navbar-dark navbar-fixed-top bg-inverse">
     <a class="navbar-brand" href="' . get_url_home() . '">
@@ -24,7 +25,7 @@ function getHeader()
         <button type="button" class="btn btn-default navbar-icon" data-toggle="modal" data-target="#loginModal">
             <i class="fa fa-user"></i>
         </button>
-        <button type="button" class="btn btn-default navbar-icon">
+        <button type="button" class="btn btn-default navbar-icon" data-toggle="dropdown" data-target="#notification-panel">
             <i class="fa fa-bell"></i>
         </button>
     </div>
@@ -130,5 +131,45 @@ function get_login_modal()
       </div> <!-- content -->
     </div> <!-- dialog -->
   </div> <!-- modal -->
+_END;
+}
+
+function get_notification_panel()
+{
+    echo <<<_END
+<div class="dropdown pull-right" id="notification-panel">
+  <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+    <div class="notification-heading">
+        <h4 class="menu-title">Notifications</h4><h4 class="menu-title pull-right">View all <i class="fa fa-arrow-circle-o-right"></i></h4>
+    </div>
+    <li class="divider"></li>
+   <div class="notifications-wrapper">
+     <a class="content" href="#">
+       <div class="notification-item">
+        <h4 class="item-title">New tenancy created · 1 day ago</h4>
+        <p class="item-info">123 Fake Street tenancy</p>
+      </div>
+    </a>
+     <a class="content" href="#">
+      <div class="notification-item">
+        <h4 class="item-title">New Tenant added · 2 day ago</h4>
+        <p class="item-info">Jane Tennot</p>
+      </div>
+    </a>
+     <a class="content" href="#">
+      <div class="notification-item">
+        <h4 class="item-title">New Property added • 3 day ago</h4>
+        <p class="item-info">123 Fake Street</p>
+      </div>
+    </a>
+     <a class="content" href="#">
+      <div class="notification-item">
+        <h4 class="item-title">New Landlord added • 3 day ago</h4>
+        <p class="item-info">Joe Landlord</p>
+      </div>
+    </a>
+   </div>
+  </ul>
+</div>
 _END;
 }
