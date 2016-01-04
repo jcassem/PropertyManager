@@ -73,6 +73,28 @@
 }
 
 /* --------------
+ * Plus modal
+ * -------------- */
+
+.plus-modal-cancel {
+    margin-left: 10px;
+}
+
+.plus-modal-submit,
+.plus-modal-cancel {
+    width: 120px;
+}
+
+/* Fix open modal shifting body to the left*/
+.modal-open {
+    padding-right: 0 !important;
+}
+
+html {
+    overflow-y: scroll !important;
+}
+
+/* --------------
  * Notification center
  * -------------- */
 
